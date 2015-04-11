@@ -57,9 +57,9 @@ function! Ilist(command, selection, start_at_cursor, ...)
             let filename = split(line, '\.\./')[-1]
         else
             let lnum = split(line)[1]
-            let text = substitute(line, '^\s*.\{-}:\s*\S\{-}\s\s', "", "")
-            let col  = match(text, a:selection ? search_pattern : expand("<cword>")) + 2
-            call add(qf_entries, {"filename" : filename, "lnum" : lnum, "col" : col, "text" : text})
+            let text = substitute(line, '^\s*.\{-}:\s*\S\{-}\s', "", "")
+            let col  = match(text, a:selection ? search_pattern : expand("<cword>")) + 1
+            call add(qf_entries, {"filename" : filename, "lnum" : lnum, "col" : col, "vcol" : 1, "text" : text})
         endif
     endfor
 
