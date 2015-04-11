@@ -14,7 +14,7 @@ let g:loaded_ilist = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! s:Ilist(command, selection, start_at_cursor, ...)
+function! Ilist(command, selection, start_at_cursor, ...)
     " Derive the commands used below from the first argument.
     let excmd   = a:command . "list"
     let normcmd = toupper(a:command)
@@ -71,21 +71,21 @@ function! s:Ilist(command, selection, start_at_cursor, ...)
 endfunction
 
 " Override the built-in [I and ]I.
-nnoremap <silent> [I :call s:Ilist("i", 0, 0)<CR>
-nnoremap <silent> ]I :call s:Ilist("i", 0, 1)<CR>
+nnoremap <silent> [I :call Ilist("i", 0, 0)<CR>
+nnoremap <silent> ]I :call Ilist("i", 0, 1)<CR>
 " Add [I and ]I for visual mode.
-xnoremap <silent> [I :<C-u>call s:Ilist("i", 1, 0)<CR>
-xnoremap <silent> ]I :<C-u>call s:Ilist("i", 1, 1)<CR>
+xnoremap <silent> [I :<C-u>call Ilist("i", 1, 0)<CR>
+xnoremap <silent> ]I :<C-u>call Ilist("i", 1, 1)<CR>
 " Add the :Ilist command.
-command! -nargs=1 Ilist call s:Ilist("i", 1, 0, <f-args>)
+command! -nargs=1 Ilist call Ilist("i", 1, 0, <f-args>)
 
 " Override the built-in [D and ]D.
-nnoremap <silent> [D :call s:Ilist("d", 0, 0)<CR>
-nnoremap <silent> ]D :call s:Ilist("d", 0, 1)<CR>
+nnoremap <silent> [D :call Ilist("d", 0, 0)<CR>
+nnoremap <silent> ]D :call Ilist("d", 0, 1)<CR>
 " Add [D and ]D for visual mode.
-xnoremap <silent> [D :<C-u>call s:Ilist("d", 1, 0)<CR>
-xnoremap <silent> ]D :<C-u>call s:Ilist("d", 1, 1)<CR>
+xnoremap <silent> [D :<C-u>call Ilist("d", 1, 0)<CR>
+xnoremap <silent> ]D :<C-u>call Ilist("d", 1, 1)<CR>
 " Add the :Dlist command.
-command! -nargs=1 Dlist call s:Ilist("d", 1, 0, <f-args>)
+command! -nargs=1 Dlist call Ilist("d", 1, 0, <f-args>)
 
 let &cpo = s:save_cpo
