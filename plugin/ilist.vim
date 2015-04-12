@@ -54,7 +54,7 @@ function! Ilist(command, selection, start_at_cursor, ...)
     let qf_entries = []
     for line in lines
         if line !~ '^\s*\d\+:'
-            let filename = split(line, '\.\./')[-1]
+            let filename = fnamemodify(line, ':p:.')
         else
             let lnum = split(line)[1]
             let text = substitute(line, '^\s*.\{-}:\s*\S\{-}\s', "", "")
