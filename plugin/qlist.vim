@@ -1,20 +1,20 @@
-" ilist.vim - Persist the result of :ilist and related commands via the
+" qlist.vim - Persist the result of :ilist and related commands via the
 " quickfix list.
 " Maintainer:	romainl <romainlafourcade@gmail.com>
 " Version:	0.0.1
 " License:	Vim License (see :help license)
-" Location:	plugin/ilist.vim
-" Website:	https://github.com/romainl/vim-ilist
+" Location:	plugin/qlist.vim
+" Website:	https://github.com/romainl/vim-qlist
 
-if exists("g:loaded_ilist") || v:version < 703 || &compatible
+if exists("g:loaded_qlist") || v:version < 703 || &compatible
   finish
 endif
-let g:loaded_ilist = 1
+let g:loaded_qlist = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! Ilist(command, selection, start_at_cursor, ...)
+function! Qlist(command, selection, start_at_cursor, ...)
     " Derive the commands used below from the first argument.
     let excmd   = a:command . "list"
     let normcmd = toupper(a:command)
@@ -71,21 +71,21 @@ function! Ilist(command, selection, start_at_cursor, ...)
 endfunction
 
 " Override the built-in [I and ]I.
-nnoremap <silent> [I :call Ilist("i", 0, 0)<CR>
-nnoremap <silent> ]I :call Ilist("i", 0, 1)<CR>
+nnoremap <silent> [I :call Qlist("i", 0, 0)<CR>
+nnoremap <silent> ]I :call Qlist("i", 0, 1)<CR>
 " Add [I and ]I for visual mode.
-xnoremap <silent> [I :<C-u>call Ilist("i", 1, 0)<CR>
-xnoremap <silent> ]I :<C-u>call Ilist("i", 1, 1)<CR>
-" Add the :Ilist command.
-command! -nargs=1 Ilist call Ilist("i", 1, 0, <f-args>)
+xnoremap <silent> [I :<C-u>call Qlist("i", 1, 0)<CR>
+xnoremap <silent> ]I :<C-u>call Qlist("i", 1, 1)<CR>
+" Add the :Qlist command.
+command! -nargs=1 Qlist call Qlist("i", 1, 0, <f-args>)
 
 " Override the built-in [D and ]D.
-nnoremap <silent> [D :call Ilist("d", 0, 0)<CR>
-nnoremap <silent> ]D :call Ilist("d", 0, 1)<CR>
+nnoremap <silent> [D :call Qlist("d", 0, 0)<CR>
+nnoremap <silent> ]D :call Qlist("d", 0, 1)<CR>
 " Add [D and ]D for visual mode.
-xnoremap <silent> [D :<C-u>call Ilist("d", 1, 0)<CR>
-xnoremap <silent> ]D :<C-u>call Ilist("d", 1, 1)<CR>
+xnoremap <silent> [D :<C-u>call Qlist("d", 1, 0)<CR>
+xnoremap <silent> ]D :<C-u>call Qlist("d", 1, 1)<CR>
 " Add the :Dlist command.
-command! -nargs=1 Dlist call Ilist("d", 1, 0, <f-args>)
+command! -nargs=1 Dlist call Qlist("d", 1, 0, <f-args>)
 
 let &cpo = s:save_cpo
