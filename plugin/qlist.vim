@@ -1,5 +1,4 @@
-" qlist.vim - Persist the result of :ilist and related commands via the
-" quickfix list.
+" qlist.vim - Persist the result of :ilist and related commands via the quickfix list.
 " Maintainer:	romainl <romainlafourcade@gmail.com>
 " Version:	0.0.1
 " License:	Vim License (see :help license)
