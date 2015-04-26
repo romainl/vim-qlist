@@ -77,7 +77,7 @@ nnoremap <silent> ]I :call Qlist("i", 0, 1)<CR>
 xnoremap <silent> [I :<C-u>call Qlist("i", 1, 0)<CR>
 xnoremap <silent> ]I :<C-u>call Qlist("i", 1, 1)<CR>
 " Add the :Ilist command.
-command! -nargs=1 Ilist call Qlist("i", 1, 0, <f-args>)
+command! -nargs=1 -bar Ilist call Qlist("i", 1, 0, <f-args>)
 
 " Override the built-in [D and ]D.
 nnoremap <silent> [D :call Qlist("d", 0, 0)<CR>
@@ -86,6 +86,6 @@ nnoremap <silent> ]D :call Qlist("d", 0, 1)<CR>
 xnoremap <silent> [D :<C-u>call Qlist("d", 1, 0)<CR>
 xnoremap <silent> ]D :<C-u>call Qlist("d", 1, 1)<CR>
 " Add the :Dlist command.
-command! -nargs=1 Dlist call Qlist("d", 1, 0, <f-args>)
+command! -nargs=1 -bar Dlist call Qlist("d", 1, 0, <f-args>)
 
 let &cpo = s:save_cpo
