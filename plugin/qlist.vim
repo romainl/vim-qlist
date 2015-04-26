@@ -76,8 +76,8 @@ nnoremap <silent> ]I :call Qlist("i", 0, 1)<CR>
 " Add [I and ]I for visual mode.
 xnoremap <silent> [I :<C-u>call Qlist("i", 1, 0)<CR>
 xnoremap <silent> ]I :<C-u>call Qlist("i", 1, 1)<CR>
-" Add the :Qlist command.
-command! -nargs=1 Qlist call Qlist("i", 1, 0, <f-args>)
+" Add the :Ilist command.
+command! -nargs=1 Ilist call Qlist("i", 1, 0, <f-args>)
 
 " Override the built-in [D and ]D.
 nnoremap <silent> [D :call Qlist("d", 0, 0)<CR>

@@ -16,7 +16,7 @@ Use your favorite plugin manager or dump `qlist.vim` in your `plugin` directory:
 
 ## Why this plugin
 
-This plugin adds two custom commands to your configuration, `:Qlist` and `:Dlist` and overrides these four normal mode commands: `[I`, `]I`, `[D`, `]D`.
+This plugin adds two custom commands to your configuration, `:Ilist` and `:Dlist` and overrides these four normal mode commands: `[I`, `]I`, `[D`, `]D`.
 
 Those commands still behave like the originals, minus two differences.
 
@@ -28,7 +28,7 @@ Those commands still behave like the originals, minus two differences.
 
 * The second difference is minimal but worth noting...
 
-  * `:Qlist foo` works like `:ilist /foo`,
+  * `:Ilist foo` works like `:ilist /foo`,
   * `:Dlist bar` works like `:dlist /bar`.
 
 ## Usage
@@ -43,7 +43,7 @@ Those commands still behave like the originals, minus two differences.
                   " Comments are skipped.
                   " Search starts after the current position.
 
-    :Qlist foo    " List every word containing 'foo' in the current
+    :Ilist foo    " List every word containing 'foo' in the current
                   " buffer and included files.
                   " Comments are skipped.
                   " Search starts from the top.
