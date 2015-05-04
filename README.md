@@ -14,11 +14,11 @@ Use your favorite plugin manager or dump `qlist.vim` in your `plugin` directory:
     # Windows
     %userprofile%\vimfiles\plugin\qlist.vim
 
-## Why this plugin
+## Usage
 
-This plugin adds two custom commands to your configuration, `:Ilist` and `:Dlist` and overrides these four normal mode commands: `[I`, `]I`, `[D`, `]D`.
+This plugin adds two custom commands to your configuration, `:Ilist` and `:Dlist`, and overrides these four normal mode commands: `[I`, `]I`, `[D`, `]D`.
 
-Those commands still behave like the originals, minus two differences.
+Those commands still behave like the originals and share the same requirements. There are two differences, though:
 
 * The first difference is the whole point of this humble plugin: instead of displaying the search results as a non-interactive list, we use the quickfix window. The benefits are huge...
 
@@ -31,7 +31,7 @@ Those commands still behave like the originals, minus two differences.
   * `:Ilist foo` works like `:ilist /foo`,
   * `:Dlist bar` works like `:dlist /bar`.
 
-## Usage
+Here are explanations of all the commands:
 
     [I            " List every occurence of the word under the cursor
                   " in the current buffer and included files.
@@ -62,8 +62,24 @@ Those commands still behave like the originals, minus two differences.
 
 For more information, please read `:help include-search`.
 
+## Configuration
+
+If you don't want to override `[I`, `]D` and friends, you can still map each command to whatever works for you. Below are the default mappings that you can use as a basis for your own configuration:
+
+    " normal mode
+    nmap <silent> [I <Plug>QlistIncludefromtop
+    nmap <silent> ]I <Plug>QlistIncludefromhere
+    nmap <silent> [D <Plug>QlistDefinefromtop
+    nmap <silent> ]D <Plug>QlistDefinefromhere
+
+    " visual mode
+    xmap <silent> [I <Plug>QlistIncludefromtopvisual
+    xmap <silent> ]I <Plug>QlistIncludefromherevisual
+    xmap <silent> [D <Plug>QlistDefinefromtopvisual
+    xmap <silent> ]D <Plug>QlistDefinefromherevisual
+
 ## Possible developments
 
 * Add proper documentation.
 * Add a gifcast to the `README`.
-* Add options.
+* Add options?
