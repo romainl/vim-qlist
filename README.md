@@ -85,14 +85,6 @@ If you don't want to override `[I`, `]D` and friends, you can still map each com
     xmap <silent> [D <Plug>QlistDefinefromtopvisual
     xmap <silent> ]D <Plug>QlistDefinefromherevisual
 
-If you want to open (and refresh) the quickfix window each time you do a search (like in the screenshot above) you can add these lines to your `vimrc`:
-
-    augroup qf
-        autocmd!
-        autocmd QuickFixCmdPost [^l]* cwindow
-        autocmd QuickFixCmdPost    l* lwindow
-    augroup END
-
 `:help quickfix` is a recommended read if you are unfamiliar with the quickfix feature.
 
 ## TODO
