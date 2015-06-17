@@ -4,6 +4,8 @@ Vim-qlist is an updated, more powerful, version of the function discussed in [th
 
 The purpose of this script is to make the results of "include-search" easier to navigate and more persistant by using the quickfix window instead of the default list-like interface.
 
+![screenshot](http://romainl.github.io/vim-qlist/images/qlist.png)
+
 ## Installation
 
 Use your favorite plugin manager or dump `qlist.vim` in your `plugin` directory:
