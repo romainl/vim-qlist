@@ -2,7 +2,7 @@
 
 Vim-qlist is an updated, more powerful, version of the function discussed in [this /r/vim thread](http://www.reddit.com/r/vim/comments/1rzvsm/do_any_of_you_redirect_results_of_i_to_the/).
 
-The purpose of this script is to make the results of "include-search" easier to navigate and more persistant by using the quickfix list instead of the default list-like interface.
+The purpose of this script is to make the results of "include-search" and "definition-search" easier to navigate and more persistant by using the quickfix list instead of the default list-like interface.
 
 ![screenshot](http://romainl.github.io/vim-qlist/images/qlist.png)
 
@@ -18,7 +18,7 @@ Use your favorite plugin manager or dump `qlist.vim` in your `plugin` directory:
 
 ## Usage
 
-This plugin adds two custom commands to your configuration, `:Ilist` and `:Dlist`, and overrides these four normal mode commands: `[I`, `]I`, `[D`, `]D`.
+This plugin adds two custom commands to your configuration, `:Ilist` and `:Dlist`, overrides these four normal mode commands: `[I`, `]I`, `[D`, `]D` and adds their visual mode counterparts.
 
 Those commands still behave like the originals and share the same requirements. There are two differences, though:
 
