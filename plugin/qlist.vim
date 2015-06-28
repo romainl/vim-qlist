@@ -68,6 +68,7 @@ function! s:Qlist(command, selection, start_at_cursor, ...)
     call setqflist(qf_entries)
 
     " Open the quickfix window if there is something to show.
+    cclose
     cwindow
 
     " Add proper feedback to the statusline.
