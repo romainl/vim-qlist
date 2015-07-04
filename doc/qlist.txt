@@ -1,0 +1,273 @@
+*qlist.txt*	A plugin to make working with the quickfix list/window smoother.
+
+
+			VIM-qlist DOCUMENTATION by Romain Lafourcade
+
+
+Help on using vim-qlist                                         *qlist* *vim-qlist*
+
+    1. Introduction ............................... |qlist-intro|
+    2. Installation ............................... |qlist-installation|
+    3. Configuration .............................. |qlist-configuration|
+    4. Usage ...................................... |qlist-usage|
+    5. Tips and tricks ............................ |qlist-tricks|
+    6. Acknowledgements ........................... |qlist-acknowledgements|
+    7. TODO ....................................... |qlist-todo|
+    8. DONE ....................................... |qlist-done|
+
+==============================================================================
+ 1. INTRODUCTION                                                  *qlist-intro*
+
+Vim-qlist is an updated, more powerful, version of the function discussed
+in this /r/vim thread:
+
+    http://goo.gl/AkYQ1L
+
+The purpose of this script is to make the results of |include-search| easier
+to navigate and more persistant by using the |quickfix| list instead of the
+default list-like interface.
+
+==============================================================================
+ 2. INSTALLATION                                           *qlist-installation*
+
+Use your favorite plugin manager or dump the files in this repository in their
+standard location:
+
+on Unix-like systems... >
+
+    ~/.vim/doc/qlist.txt
+    ~/.vim/plugin/qlist.vim
+<
+on Windows... >
+
+    %userprofile%\vimfiles\doc\qlist.txt
+    %userprofile%\vimfiles\plugin\qlist.vim
+<
+Don't forget to execute the following command to make the documentation
+globally available:
+
+on Unix-like systems... >
+
+    :helptags ~/.vim/doc
+<
+on Windows... >
+
+    :helptags %userprofile%\vimfiles\doc
+<
+==============================================================================
+ 3. CONFIGURATION                                         *qlist-configuration*
+
+|[I|, |]I|, |[D|, and |]D| are all overriden by default, both in normal and visual
+mode, using the mappings below:
+
+    <Plug>QlistIncludefromtop ................ |QlistIncludefromtop|
+    <Plug>QlistIncludefromhere ............... |QlistIncludefromhere|
+    <Plug>QlistDefinefromtop ................. |QlistDefinefromtop|
+    <Plug>QlistDefinefromhere ................ |QlistDefinefromhere|
+    <Plug>QlistIncludefromtopvisual .......... |QlistIncludefromtopvisual|
+    <Plug>QlistIncludefromherevisual ......... |QlistIncludefromherevisual|
+    <Plug>QlistDefinefromtopvisual ........... |QlistDefinefromtopvisual|
+    <Plug>QlistDefinefromherevisual .......... |QlistDefinefromherevisual|
+
+If you don't want to override the default commands you can still map each
+of them to whatever works for you.
+
+------------------------------------------------------------------------------
+                                                          *QlistIncludefromtop*
+    <Plug>QlistIncludefromtop
+
+    Like |[I|   List every occurence of the word under the cursor
+              in the current buffer and included files.
+              Comments are skipped.
+              Search starts from the top.
+
+    Default mapping: >
+
+        nmap <silent> [I <Plug>QlistIncludefromtop
+<
+------------------------------------------------------------------------------
+                                                    *QlistIncludefromtopvisual*
+    <Plug>QlistIncludefromtopvisual
+
+    Like |[I|   List every occurence of the highlighted text
+              in the current buffer and included files.
+              Comments are skipped.
+              Search starts from the top.
+
+    Default mapping: >
+
+        xmap <silent> [I <Plug>QlistIncludefromtopvisual
+<
+------------------------------------------------------------------------------
+                                                         *QlistIncludefromhere*
+    <Plug>QlistIncludefromhere
+
+    Like |]I|   List every occurence of the word under the cursor
+              in the current buffer and included files.
+              Comments are skipped.
+              Search starts after the current position.
+
+    Default mapping: >
+
+        nmap <silent> ]I <Plug>QlistIncludefromhere
+<
+------------------------------------------------------------------------------
+                                                   *QlistIncludefromherevisual*
+    <Plug>QlistIncludefromherevisual
+
+    Like |]I|   List every occurence of the highlighted text
+              in the current buffer and included files.
+              Comments are skipped.
+              Search starts after the current position.
+
+    Default mapping: >
+
+        xmap <silent> ]I <Plug>QlistIncludefromherevisual
+<
+------------------------------------------------------------------------------
+                                                           *QlistDefinefromtop*
+    <Plug>QlistDefinefromtop
+
+    Like |[D|   List every definition of the symbol under the cursor
+              in the current buffer and included files.
+              Search starts from the top.
+
+    Default mapping: >
+
+        nmap <silent> [D <Plug>QlistDefinefromtop
+<
+------------------------------------------------------------------------------
+                                                     *QlistDefinefromtopvisual*
+    <Plug>QlistDefinefromtopvisual
+
+    Like |[D|   List every definition of the highlighted text
+              in the current buffer and included files.
+              Search starts from the top.
+
+    Default mapping: >
+
+        xmap <silent> [D <Plug>QlistDefinefromtopvisual
+<
+------------------------------------------------------------------------------
+                                                          *QlistDefinefromhere*
+    <Plug>QlistDefinefromhere
+
+    Like |]D|   List every definition of the symbol under the cursor
+              in the current buffer and included files.
+              Search starts after the current position.
+
+    Default mapping: >
+
+        nmap <silent> ]D <Plug>QlistDefinefromhere
+<
+------------------------------------------------------------------------------
+                                                    *QlistDefinefromherevisual*
+    <Plug>QlistDefinefromherevisual
+
+    Like |]D|   List every definition of the highlighted text
+              in the current buffer and included files.
+              Search starts after the current position.
+
+    Default mapping: >
+
+        xmap <silent> ]D <Plug>QlistDefinefromherevisual
+
+==============================================================================
+ 4. USAGE                                                         *qlist-usage*
+
+This plugin adds two custom commands to your configuration, |:Ilist| and |:Dlist|,
+and overrides these four normal mode commands: |[I|, |]I|, |[D|, |]D|.
+
+Those commands still behave like the originals and share the same requirements.
+There are two differences, though...
+
+The first difference is the whole point of this humble plugin:
+instead of displaying the results as a non-interactive list, we use the
+quickfix list. The benefits are huge.
+
+    - the results can be displayed in an interactive window where you can
+      search and move around with regular Vim commands,
+    - the results are still accessible even if the quickfix window is closed,
+    - older searches can be re-called if needed.
+
+The second difference is minimal but worth noting: >
+
+    :Ilist foo
+<
+works like: >
+
+    :ilist /foo
+
+and: >
+
+    :Dlist bar
+
+works like: >
+
+    :dlist /bar
+<
+The forward slash forces vim to perform regular expression search instead of
+the default whole word search. This is actually a built-in feature that
+happens to be quite handy for quick searches.
+
+The following commands are available when the location/quickfix window
+is focused.
+
+*:Ilist*
+
+    Like |:ilist|   List every word containing the argument in the current
+                  buffer and included files.
+                  Comments are skipped.
+                  Search starts from the top.
+
+    Example: >
+
+        :Ilist user
+>
+*:Dlist*
+
+    Like |:dlist|   List every definition containing the argument in the current
+                  buffer and included files.
+                  Search starts from the top.
+    Example: >
+
+        :Dlist getContent
+>
+==============================================================================
+ 5. TIPS AND TRICKS                                              *qlist-tricks*
+
+If you want to open (and refresh) the quickfix window each time you do a
+search you can add these lines to your vimrc: >
+
+    augroup automaticquickfix
+        autocmd!
+        autocmd QuickFixCmdPost [^l]* cwindow
+        autocmd QuickFixCmdPost    l* lwindow
+    augroup END
+<
+Executing the command below will list every definition in the current buffer
+and include files. A nice and cheap navigation tool: >
+
+    :Dlist /
+<
+==============================================================================
+ 6. ACKNOWLEGEMENTS                                    *qlist-acknowledgements*
+
+All the templates used to turn this multifarious snippets collection into
+a proper plugin come from Barry Arthur's Area 41 plugin:
+
+    - https://github.com/dahu/Area-41
+
+==============================================================================
+ 7. TODO                                                           *qlist-todo*
+
+    - Export more options?
+    - Add a gifcast to the README?
+
+==============================================================================
+ 8. DONE                                                           *qlist-done*
+
+    - Use <Plug> mappings.
+    - Write a proper help file.
+
+ vim:tw=78:ts=8:ft=help:norl:
