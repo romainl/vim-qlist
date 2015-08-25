@@ -25,7 +25,7 @@ in this /r/vim thread:
 
 The purpose of this script is to make the results of |include-search| easier
 to navigate and more persistant by using the |quickfix| list instead of the
-default list-like interface.
+default non-interactive interface.
 
 ==============================================================================
  2. INSTALLATION                                           *qlist-installation*
@@ -43,7 +43,7 @@ on Windows... >
     %userprofile%\vimfiles\doc\qlist.txt
     %userprofile%\vimfiles\plugin\qlist.vim
 <
-Don't forget to execute the following command to make the documentation
+and don't forget to execute the following command to make the documentation
 globally available:
 
 on Unix-like systems... >
@@ -57,20 +57,24 @@ on Windows... >
 ==============================================================================
  3. CONFIGURATION                                         *qlist-configuration*
 
-|[I|, |]I|, |[D|, and |]D| are all overriden by default, both in normal and visual
-mode, using the mappings below:
+|[I|, |]I|, |[D|, and |]D| are all overriden by default in normal mode using
+the mappings below:
 
     <Plug>QlistIncludefromtop ................ |QlistIncludefromtop|
     <Plug>QlistIncludefromhere ............... |QlistIncludefromhere|
     <Plug>QlistDefinefromtop ................. |QlistDefinefromtop|
     <Plug>QlistDefinefromhere ................ |QlistDefinefromhere|
+
+If you don't want to override the default commands you can still map each
+of them to whatever works for you.
+
+Vim-qlist also provides visual mode equivalents of those commands for your
+convenience:
+
     <Plug>QlistIncludefromtopvisual .......... |QlistIncludefromtopvisual|
     <Plug>QlistIncludefromherevisual ......... |QlistIncludefromherevisual|
     <Plug>QlistDefinefromtopvisual ........... |QlistDefinefromtopvisual|
     <Plug>QlistDefinefromherevisual .......... |QlistDefinefromherevisual|
-
-If you don't want to override the default commands you can still map each
-of them to whatever works for you.
 
 ------------------------------------------------------------------------------
                                                           *QlistIncludefromtop*
@@ -176,10 +180,11 @@ of them to whatever works for you.
  4. USAGE                                                         *qlist-usage*
 
 This plugin adds two custom commands to your configuration, |:Ilist| and |:Dlist|,
-and overrides these four normal mode commands: |[I|, |]I|, |[D|, |]D|.
+overrides these four normal mode commands: |[I|, |]I|, |[D|, |]D| and adds their
+visual mode equvalents.
 
-Those commands still behave like the originals and share the same requirements.
-There are two differences, though...
+Those commands still behave pretty much like the originals and share the same
+requirements. There are two differences, though...
 
 The first difference is the whole point of this humble plugin:
 instead of displaying the results as a non-interactive list, we use the
@@ -210,9 +215,6 @@ The forward slash forces vim to perform regular expression search instead of
 the default whole word search. This is actually a built-in feature that
 happens to be quite handy for quick searches.
 
-The following commands are available when the location/quickfix window
-is focused.
-
 *:Ilist*
 
     Like |:ilist|   List every word containing the argument in the current
@@ -229,6 +231,7 @@ is focused.
     Like |:dlist|   List every definition containing the argument in the current
                   buffer and included files.
                   Search starts from the top.
+
     Example: >
 
         :Dlist getContent
@@ -236,8 +239,9 @@ is focused.
 ==============================================================================
  5. TIPS AND TRICKS                                              *qlist-tricks*
 
-If you want to open (and refresh) the quickfix window each time you do a
-search you can add these lines to your vimrc: >
+If you want to open/refresh the quickfix window each time you do a search
+(with vim-qlist but also with |:grep| and friends) you can add these lines
+to your vimrc: >
 
     augroup automaticquickfix
         autocmd!
@@ -245,29 +249,47 @@ search you can add these lines to your vimrc: >
         autocmd QuickFixCmdPost    l* lwindow
     augroup END
 <
-Executing the command below will list every definition in the current buffer
-and include files. A nice and cheap navigation tool: >
+The command below lists every definition in the current buffer and include
+files. A nice and cheap code navigation tool: >
 
     :Dlist /
 <
+The command below gives you a nice actionnable TOC of the current Markdown
+file: >
+
+    :Ilist ^#
+<
+Of course, those tricks work just as well with |:dlist| and |:ilist| but the
+quickfix window makes all the difference ;-)
+
+The behavior of |include-search| and |definition-search| largely depends on
+a number of filetype-specific options that may or may not be set by your
+ftplugins. Reading the following help sections is `strongly` recommended:
+
+    |'include'|     tells Vim how to find include directives in your files
+    |'define'|      tells Vim how to find definitions in your files
+    |'includeexpr'| can be useful to clean up your include directives
+    |'suffixesadd'| helps Vim infer `foo.js` from `foo`
+    |'path'|        tells Vim where to look for include files
+
 ==============================================================================
- 6. ACKNOWLEGEMENTS                                    *qlist-acknowledgements*
+ 6. ACKNOWLEDGEMENTS                                   *qlist-acknowledgements*
 
 All the templates used to turn this multifarious snippets collection into
 a proper plugin come from Barry Arthur's Area 41 plugin:
 
-    - https://github.com/dahu/Area-41
+    https://github.com/dahu/Area-41
 
 ==============================================================================
  7. TODO                                                           *qlist-todo*
 
     - Export more options?
-    - Add a gifcast to the README?
 
 ==============================================================================
  8. DONE                                                           *qlist-done*
 
     - Use <Plug> mappings.
     - Write a proper help file.
+    - Add a gifcast to the README?
 
  vim:tw=78:ts=8:ft=help:norl:
