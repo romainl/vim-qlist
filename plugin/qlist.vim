@@ -25,10 +25,11 @@ function! s:Qlist(command, selection, start_at_cursor, ...)
         if a:0 > 0 && len(a:1) > 0
             let search_pattern = a:1
         else
-            let old_reg = @v
+            let old_reg = getreg("v")
             normal! gv"vy
-            let search_pattern = substitute(escape(@v, '\/.*$^~[]'), '\\n', '\\n', 'g')
-            let @v = old_reg
+            let raw_search = getreg("v")
+            let search_pattern = substitute(escape(raw_search, '\/.*$^~[]'), '\\n', '\\n', 'g')
+            call setreg("v", old_reg)
         endif
         redir => output
         silent! execute (a:start_at_cursor ? '+,$' : '') . excmd . ' /' . search_pattern
