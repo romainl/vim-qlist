@@ -134,6 +134,7 @@ convenience:
 
     Like |[D|   List every definition of the symbol under the cursor
               in the current buffer and included files.
+              Comments are skipped.
               Search starts from the top.
 
     Default mapping: >
@@ -146,6 +147,7 @@ convenience:
 
     Like |[D|   List every definition of the highlighted text
               in the current buffer and included files.
+              Comments are skipped.
               Search starts from the top.
 
     Default mapping: >
@@ -158,6 +160,7 @@ convenience:
 
     Like |]D|   List every definition of the symbol under the cursor
               in the current buffer and included files.
+              Comments are skipped.
               Search starts after the current position.
 
     Default mapping: >
@@ -170,6 +173,7 @@ convenience:
 
     Like |]D|   List every definition of the highlighted text
               in the current buffer and included files.
+              Comments are skipped.
               Search starts after the current position.
 
     Default mapping: >
@@ -215,26 +219,31 @@ The forward slash forces vim to perform regular expression search instead of
 the default whole word search. This is actually a built-in feature that
 happens to be quite handy for quick searches.
 
-*:Ilist*
+*:Ilist[!]*
 
     Like |:ilist|   List every word containing the argument in the current
                   buffer and included files.
                   Comments are skipped.
                   Search starts from the top.
+                  See |:search-args| for and [!].
 
     Example: >
 
         :Ilist user
+        :Ilist! user
 >
-*:Dlist*
+*:Dlist[!]*
 
     Like |:dlist|   List every definition containing the argument in the current
                   buffer and included files.
+                  Comments are skipped.
                   Search starts from the top.
+                  See |:search-args| for and [!].
 
     Example: >
 
         :Dlist getContent
+        :Dlist! getContent
 >
 ==============================================================================
  5. TIPS AND TRICKS                                              *qlist-tricks*

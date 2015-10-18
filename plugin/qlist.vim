@@ -1,6 +1,6 @@
 " qlist.vim - Persist the result of :ilist and related commands via the quickfix list.
 " Maintainer:	romainl <romainlafourcade@gmail.com>
-" Version:	0.0.2
+" Version:	0.0.3
 " License:	Vim License (see :help license)
 " Location:	plugin/qlist.vim
 " Website:	https://github.com/romainl/vim-qlist
@@ -13,9 +13,13 @@ let g:loaded_qlist = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! s:Qlist(command, selection, start_at_cursor, ...)
+function! s:Qlist(command, selection, start_at_cursor, force, ...)
     " Derive the commands used below from the first argument.
-    let excmd   = a:command . "list"
+    if a:force == 1
+        let excmd = a:command . "list!"
+    else
+        let excmd = a:command . "list"
+    endif
     let normcmd = toupper(a:command)
 
     " If we are operating on a visual selection, redirect the output of '[I', ']I', '[D' or ']D'.
@@ -77,25 +81,25 @@ function! s:Qlist(command, selection, start_at_cursor, ...)
 endfunction
 
 " Add the :Ilist command.
-command! -nargs=1 -bar Ilist call <sid>Qlist("i", 1, 0, <f-args>)
+command! -nargs=1 -bar -bang Ilist call <sid>Qlist("i", 1, 0, '<bang>' == '!', <f-args>)
 
 " Add the :Dlist command.
-command! -nargs=1 -bar Dlist call <sid>Qlist("d", 1, 0, <f-args>)
+command! -nargs=1 -bar -bang Dlist call <sid>Qlist("d", 1, 0, '<bang>' == '!', <f-args>)
 
 " Internal mappings
 " Override the built-in [I and ]I.
-nnoremap <silent> <Plug>QlistIncludefromtop        :call <sid>Qlist("i", 0, 0)<CR>
-xnoremap <silent> <Plug>QlistIncludefromtopvisual  :<C-u>call <sid>Qlist("i", 1, 0)<CR>
+nnoremap <silent> <Plug>QlistIncludefromtop        :call <sid>Qlist("i", 0, 0, 0)<CR>
+xnoremap <silent> <Plug>QlistIncludefromtopvisual  :<C-u>call <sid>Qlist("i", 1, 0, 0)<CR>
 
-nnoremap <silent> <Plug>QlistIncludefromhere       :call <sid>Qlist("i", 0, 1)<CR>
-xnoremap <silent> <Plug>QlistIncludefromherevisual :<C-u>call <sid>Qlist("i", 1, 1)<CR>
+nnoremap <silent> <Plug>QlistIncludefromhere       :call <sid>Qlist("i", 0, 1, 0)<CR>
+xnoremap <silent> <Plug>QlistIncludefromherevisual :<C-u>call <sid>Qlist("i", 1, 1, 0)<CR>
 
 " Override the built-in [D and ]D.
-nnoremap <silent> <Plug>QlistDefinefromtop         :call <sid>Qlist("d", 0, 0)<CR>
-xnoremap <silent> <Plug>QlistDefinefromtopvisual   :<C-u>call <sid>Qlist("d", 1, 0)<CR>
+nnoremap <silent> <Plug>QlistDefinefromtop         :call <sid>Qlist("d", 0, 0, 0)<CR>
+xnoremap <silent> <Plug>QlistDefinefromtopvisual   :<C-u>call <sid>Qlist("d", 1, 0, 0)<CR>
 
-nnoremap <silent> <Plug>QlistDefinefromhere        :call <sid>Qlist("d", 0, 1)<CR>
-xnoremap <silent> <Plug>QlistDefinefromherevisual  :<C-u>call <sid>Qlist("d", 1, 1)<CR>
+nnoremap <silent> <Plug>QlistDefinefromhere        :call <sid>Qlist("d", 0, 1, 0)<CR>
+xnoremap <silent> <Plug>QlistDefinefromherevisual  :<C-u>call <sid>Qlist("d", 1, 1, 0)<CR>
 
 " Default, user-configurable, mappings
 if !hasmapto('<Plug>QlistIncludefromtop')
