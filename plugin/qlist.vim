@@ -1,7 +1,7 @@
 " qlist.vim - Persist the result of :ilist and related commands via the quickfix list.
 " Maintainer:	romainl <romainlafourcade@gmail.com>
 " Version:	0.0.3
-" License:	Vim License (see :help license)
+" License:	MIT
 " Location:	plugin/qlist.vim
 " Website:	https://github.com/romainl/vim-qlist
 
