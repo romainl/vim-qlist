@@ -11,7 +11,7 @@ Help on using vim-qlist                                         *qlist* *vim-qli
     3. Configuration .............................. |qlist-configuration|
     4. Usage ...................................... |qlist-usage|
     5. Tips and tricks ............................ |qlist-tricks|
-    6. Acknowledgements ........................... |qlist-acknowledgements|
+    6. Acknowledgments ............................ |qlist-acknowledgments|
     7. TODO ....................................... |qlist-todo|
     8. DONE ....................................... |qlist-done|
 
@@ -24,7 +24,7 @@ in this /r/vim thread:
     http://goo.gl/AkYQ1L
 
 The purpose of this script is to make the results of |include-search| easier
-to navigate and more persistant by using the |quickfix| list instead of the
+to navigate and more persistent by using the |quickfix| list instead of the
 default non-interactive interface.
 
 ==============================================================================
@@ -80,7 +80,7 @@ convenience:
                                                           *QlistIncludefromtop*
     <Plug>QlistIncludefromtop
 
-    Like |[I|   List every occurence of the word under the cursor
+    Like |[I|   List every occurrence of the word under the cursor
               in the current buffer and included files.
               Comments are skipped.
               Search starts from the top.
@@ -93,7 +93,7 @@ convenience:
                                                     *QlistIncludefromtopvisual*
     <Plug>QlistIncludefromtopvisual
 
-    Like |[I|   List every occurence of the highlighted text
+    Like |[I|   List every occurrence of the highlighted text
               in the current buffer and included files.
               Comments are skipped.
               Search starts from the top.
@@ -106,7 +106,7 @@ convenience:
                                                          *QlistIncludefromhere*
     <Plug>QlistIncludefromhere
 
-    Like |]I|   List every occurence of the word under the cursor
+    Like |]I|   List every occurrence of the word under the cursor
               in the current buffer and included files.
               Comments are skipped.
               Search starts after the current position.
@@ -119,7 +119,7 @@ convenience:
                                                    *QlistIncludefromherevisual*
     <Plug>QlistIncludefromherevisual
 
-    Like |]I|   List every occurence of the highlighted text
+    Like |]I|   List every occurrence of the highlighted text
               in the current buffer and included files.
               Comments are skipped.
               Search starts after the current position.
@@ -185,7 +185,7 @@ convenience:
 
 This plugin adds two custom commands to your configuration, |:Ilist| and |:Dlist|,
 overrides these four normal mode commands: |[I|, |]I|, |[D|, |]D| and adds their
-visual mode equvalents.
+visual mode equivalents.
 
 Those commands still behave pretty much like the originals and share the same
 requirements. There are two differences, though...
@@ -263,7 +263,7 @@ files. A nice and cheap code navigation tool: >
 
     :Dlist /
 <
-The command below gives you a nice actionnable TOC of the current Markdown
+The command below gives you a nice actionable TOC of the current Markdown
 file: >
 
     :Ilist ^#
@@ -282,7 +282,7 @@ ftplugins. Reading the following help sections is `strongly` recommended:
     |'path'|        tells Vim where to look for include files
 
 ==============================================================================
- 6. ACKNOWLEDGEMENTS                                   *qlist-acknowledgements*
+ 6. ACKNOWLEDGMENTS                                     *qlist-acknowledgments*
 
 All the templates used to turn this multifarious snippets collection into
 a proper plugin come from Barry Arthur's Area 41 plugin:
