@@ -1,0 +1,7 @@
+   6   365   13 .vim/vimrc
+   5   365   13 .vim/vimrc
+   4   365   13 .vim/vimrc
+   3   130    0 if cmdline =~ '\v\C^(dli|il)' | return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
+   2   148    0 \ include=^\\s*\\([^\/]\\{-\\}import[^'\"]*\\\|[^\/]\\{-\\}require\(\\)*['\"]\\zs[^'\"]*\\ze
+   1     1    0 " MINIVIMRC
+>

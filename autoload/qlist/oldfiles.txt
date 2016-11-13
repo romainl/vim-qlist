@@ -1,0 +1,9 @@
+1: ~/.minivimrc
+2: ~/.vim/vimrc
+3: ~/Applications/MacVim.app/Contents/Resources/vim/runtime/doc/cmdline.txt
+4: ~/Applications/MacVim.app/Contents/Resources/vim/runtime/doc/windows.txt
+5: ~/Applications/MacVim.app/Contents/Resources/vim/runtime/doc/syntax.txt
+6: ~/Desktop/foo.sql
+7: /private/var/folders/j0/ppmv8dx13rb38ffc284r2_200000gn/T/Google Chrome - (null) 005.txt
+8: ~/Applications/MacVim.app/Contents/Resources/vim/runtime/syntax/sqloracle.vim
+9: ~/Applications/MacVim.app/Contents/Resources/vim/runtime/syntax/sql.vim

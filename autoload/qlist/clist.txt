@@ -1,0 +1,9 @@
+ 1 .minivimrc:131 col 3: elseif cmdline =~ '\v\C^(cli|lli)' | return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
+ 2 .minivimrc:132 col 3: elseif cmdline =~ '\C^changes' | set nomore | return "\<CR>:sil se more|norm! g;\<S-Left>"
+ 3 .minivimrc:133 col 3: elseif cmdline =~ '\C^ju' | set nomore | return "\<CR>:sil se more|norm! \<C-o>\<S-Left>"
+ 4 .minivimrc:134 col 3: elseif cmdline =~ '\C^ol' | set nomore | return "\<CR>:sil se more|e #<"
+ 5 .minivimrc:135 col 3: elseif cmdline =~ '\C^undol' | return "\<CR>:u "
+ 6 .minivimrc:136 col 3: elseif cmdline =~ '\C^ls' | return "\<CR>:b"
+ 7 .minivimrc:137 col 3: elseif cmdline =~ '/#$' | return "\<CR>:"
+ 8 .minivimrc:138 col 3: else | return "\<CR>" | endif
+ 9 .minivimrc:139 col 2: else | return "\<CR>" | endif

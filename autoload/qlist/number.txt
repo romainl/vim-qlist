@@ -1,0 +1,9 @@
+132 »       »       elseif cmdline =~ '\v\C^(cli|lli)' | return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
+133 »       »       elseif cmdline =~ '\C^changes' | set nomore | return "\<CR>:sil se more|norm! g;\<S-Left>"
+134 »       »       elseif cmdline =~ '\C^ju' | set nomore | return "\<CR>:sil se more|norm! \<C-o>\<S-Left>"
+135 »       »       elseif cmdline =~ '\C^ol' | set nomore | return "\<CR>:sil se more|e #<"
+136 »       »       elseif cmdline =~ '\C^undol' | return "\<CR>:u "
+138 »       »       elseif cmdline =~ '\C^ls' | return "\<CR>:b"
+139 »       »       elseif cmdline =~ '/#$' | return "\<CR>:"
+140 »       »       else | return "\<CR>" | endif
+141 »       else | return "\<CR>" | endif
