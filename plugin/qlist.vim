@@ -77,7 +77,11 @@ function! s:Qlist(command, selection, start_at_cursor, force, ...)
     execute min([ 10, len(getqflist()) ]) 'cwindow'
 
     " Add proper feedback to the statusline.
-    let w:quickfix_title = feedback
+    if has("patch-7.4.2200")
+        call setqflist([], 'r', {'title': feedback})
+    else
+        let w:quickfix_title = feedback
+    endif
 endfunction
 
 " Add the :Ilist command.
