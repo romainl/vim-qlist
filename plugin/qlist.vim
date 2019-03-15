@@ -50,7 +50,7 @@ function! s:Qlist(command, selection, start_at_cursor, force, ...)
     let lines = split(output, '\n')
 
     " Bail out on errors.
-    if lines[0] =~ '^Error detected'
+    if (normcmd is# 'D' && lines[2] =~# '^E388:') || normcmd is# 'I' && (lines[2] =~# '^E389:')
         echomsg 'Could not find "' . (a:selection ? search_pattern : expand("<cword>")) . '".'
         return
     endif
