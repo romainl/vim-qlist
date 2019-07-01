@@ -68,8 +68,12 @@ function! qlist#Qlist(command, selection, start_at_cursor, force, ...)
     call setqflist(qf_entries)
 
     " Open the quickfix window if there is something to show.
-    cclose
-    execute min([ 10, len(getqflist()) ]) 'cwindow'
+    if exists("g:loaded_qf")
+        doautocmd QuickFixCmdPost
+    else
+        cclose
+        execute min([ 10, len(getqflist()) ]) 'cwindow'
+    endif
 
     " Add proper feedback to the statusline.
     if has("patch-7.4.2200")
