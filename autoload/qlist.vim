@@ -69,7 +69,7 @@ function! qlist#Qlist(command, selection, start_at_cursor, force, ...)
 
     " Open the quickfix window if there is something to show.
     if exists("g:loaded_qf")
-        doautocmd QuickFixCmdPost
+        doautocmd QuickFixCmdPost cwindow
     else
         cclose
         execute min([ 10, len(getqflist()) ]) 'cwindow'
